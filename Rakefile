@@ -11,7 +11,9 @@ begin
     gemspec.authors = ["Jan Krutisch"]
     gemspec.add_dependency('ffi')
     gemspec.version = Portmidi::VERSION
+    gemspec.requirements << "Needs portmidi compiled as a dynamic library"
   end
+  Jeweler::GemcutterTasks.new
 rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
 end
