@@ -1,10 +1,11 @@
+require 'portmidi/version'
 require 'portmidi/pm_map'
 require 'portmidi/device'
 require 'portmidi/input'
 require 'portmidi/output'
 require 'portmidi/exceptions'
+
 module Portmidi
-  VERSION = "0.2.0"
   
   def self.devices
     devices = []
