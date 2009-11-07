@@ -3,7 +3,7 @@ module Portmidi
   module PM_Map
     extend FFI::Library
     #ffi_lib File.join(File.dirname(__FILE__), 'libportmidi_d')
-    ffi_lib 'libportmidi_d'
+    ffi_lib 'libportmidi'
     attach_function :Pm_CountDevices, [], :int
     attach_function :Pm_Initialize, [], :void
     attach_function :Pm_GetDeviceInfo,[:int], :pointer

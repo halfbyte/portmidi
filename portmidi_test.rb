@@ -13,7 +13,7 @@ Portmidi::start
 devices = Portmidi::devices
 
 puts devices.map(&:to_str)
-output = Output.new(0)
+output = Output.new(2)
 
 output.write_short(0xB0, 0x00, 0x00)
 
