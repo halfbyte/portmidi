@@ -1,4 +1,7 @@
+require 'rubygems'
+require 'rake'
 require File.join(File.dirname(__FILE__), "lib/portmidi/version")
+
 begin
   require 'jeweler'
   
@@ -16,4 +19,14 @@ begin
   Jeweler::GemcutterTasks.new
 rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
+end
+
+require 'rake/rdoctask'
+Rake::RDocTask.new do |rdoc|
+  version = Portmidi::VERSION
+
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title = "Portmidi #{version}"
+  rdoc.rdoc_files.include('README*')
+  rdoc.rdoc_files.include('lib/**/*.rb')
 end

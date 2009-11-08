@@ -8,7 +8,7 @@ module Portmidi
       @name = name
     end
     
-    def open(buffer_size = 4, latency = 0)
+    def open(buffer_size = nil, latency = nil)
       case(@type)
       when :input
         Input.new(@device_id, buffer_size)

@@ -13,7 +13,10 @@ module Portmidi
     attach_function :Pm_Poll, [:pointer], :int
     attach_function :Pm_Read, [:pointer, :pointer, :int], :int
     attach_function :Pm_WriteShort, [:pointer, :int32, :int32], :int
-    attach_function :Pm_GetErrorText, [:int], :pointer
+    attach_function :Pm_Write, [:pointer, :pointer, :int32], :int
+    attach_function :Pm_WriteSysEx, [:pointer, :int32, :buffer_in], :int
+
+    attach_function :Pm_GetErrorText, [:int], :string
   
     #attach_function :Pt_Start, [:int, :pointer, :pointer], :int
   
@@ -28,7 +31,7 @@ module Portmidi
   
     class Event < FFI::Struct
       layout :message, :int32,
-             :timestamp, :int32           
+             :timestamp, :int32
     end
   
     def self.encode_message(status, data1, data2)
