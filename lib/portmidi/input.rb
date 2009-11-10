@@ -1,7 +1,6 @@
 module Portmidi
   class Input
     def initialize(device_id, buffer_size = 512)
-      puts buffer_size
       in_stream_ptr = FFI::MemoryPointer.new(:pointer)
       if (errnum = PM_Map.Pm_OpenInput(in_stream_ptr, device_id, nil, buffer_size, nil, nil)) == 0
         @in_stream = in_stream_ptr.read_pointer
