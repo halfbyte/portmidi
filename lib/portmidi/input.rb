@@ -9,6 +9,10 @@ module Portmidi
       end
     end
     
+    def close
+      PM_Map.Pm_Close(@in_stream)
+    end
+    
     def poll
       PM_Map.Pm_Poll(@in_stream) != 0
     end

@@ -13,6 +13,10 @@ module Portmidi
       end
     end
     
+    def close
+      PM_Map.Pm_Close(@out_stream)
+    end
+    
     #
     # write a single three byte message
     #

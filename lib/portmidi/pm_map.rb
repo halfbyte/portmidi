@@ -15,6 +15,7 @@ module Portmidi
     attach_function :Pm_WriteShort, [:pointer, :int32, :int32], :int
     attach_function :Pm_Write, [:pointer, :pointer, :int32], :int
     attach_function :Pm_WriteSysEx, [:pointer, :int32, :buffer_in], :int
+    attach_function :Pm_Close, [:pointer], :int
 
     attach_function :Pm_GetErrorText, [:int], :string
   
