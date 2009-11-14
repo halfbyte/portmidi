@@ -1,18 +1,13 @@
 = Portmidi-Mapper
 
-This is a small, incomplete wrapper around the portmidi library.
+This is a small, incomplete wrapper around the portmidi c library.
 
 It is the successor of my portmidi-ruby project which used ordinary ruby extensions which are a pain to write.
 
-Author: Jan 'half/byte' Krutisch <jan@krutisch.de>
-
-Uses Portmidi, written by Roger B. Dannenberg.
-
 == Requirements
 
-
-* portmidi (who woulda thought) built as a dynamic library.
-* ffi (which in turn needs a sane build env)
+* portmidi (who woulda thought) built as a dynamic library. See below for special notes for Mac OS X Snow Leopard
+* ffi (which in turn needs a sane build env to be installed)
 
 == What's missing?
 
@@ -32,8 +27,16 @@ examples/read_test.rb on how to decipher sysex atm.
 
 * I'd love to see some explicit support for correctly parsing SysEx, see 
 
+== Credits
 
-== Installing Portmidi on OS X Snow leopard
+The portmidi wrapper was thrown together by Jan Krutisch <jan@krutisch.de>
+
+* Portmidi C-Library: Roger B. Dannenberg / Portmedia Framework Group
+* Jan 'half/byte' Krutisch (http://github.com/halfbyte)
+* Patches by
+  * Thomas Jachmann (http://github.com/thomasjachmann)
+
+== Appendix A: Installing Portmidi on OS X Snow leopard
 
 This is a major pita, because currently portmidi doesn't officially build for 64 bit, which 
 makes it impossible to use with the default Snow Leopard Ruby.
