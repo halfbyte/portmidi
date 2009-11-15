@@ -12,9 +12,9 @@ begin
     gemspec.email = "jan@krutisch.de"
     gemspec.homepage = "http://github.com/halfbyte/portmidi"
     gemspec.authors = ["Jan Krutisch"]
-    gemspec.add_dependency('ffi')
     gemspec.version = Portmidi::VERSION
     gemspec.requirements << "Needs portmidi compiled as a dynamic library"
+    gemspec.requirements << "On MRI, this needs the ffi gem installed"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
