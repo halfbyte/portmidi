@@ -1,6 +1,6 @@
 module Portmidi
   class Output
-    
+
     #
     # open a device with the given ID
     #
@@ -12,19 +12,19 @@ module Portmidi
         raise Portmidi::DeviceError, errnum, "Could not open Device #{device_id} as output device"
       end
     end
-    
+
     def close
       PM_Map.Pm_Close(@out_stream)
     end
-    
+
     #
     # write a single three byte message
     #
-    
-    def write_short(status, data1, data2)
-      PM_Map.Pm_WriteShort(@out_stream, 0, PM_Map.encode_message(status, data1, data2))
+
+    def write_short(status, data1, data2, timestamp = 0)
+      PM_Map.Pm_WriteShort(@out_stream, timestamp, PM_Map.encode_message(status, data1, data2))
     end
-    
+
     def write(messages)
       buffer = FFI::MemoryPointer.new(PM_Map::Event, messages.length)
       messages.length.times do |i|
@@ -34,12 +34,12 @@ module Portmidi
       end
       PM_Map.Pm_Write(@out_stream, buffer, messages.length)
     end
-    
-    
 
-    # 
+
+
+    #
     # sends the sysex, the message should be an array of byte values
-    # 
+    #
     def write_sysex(sysex)
       raise "Invalid Sysex Format" if (sysex.first != 0xF0 || sysex.last != 0xF7)
       msg = FFI::Buffer.alloc_in(:uchar, sysex.length)
@@ -48,11 +48,11 @@ module Portmidi
       end
       PM_Map.Pm_WriteSysEx(@out_stream, 0, msg)
     end
-    
+
   private
     def packEvent(message)
       ((((message[3] || 0) << 24) & 0xFF000000) | (((message[2] || 0) << 16) & 0xFF0000) | (((message[1] || 0) << 8) & 0xFF00) | ((message[0]) & 0xFF))
     end
-    
+
   end
 end

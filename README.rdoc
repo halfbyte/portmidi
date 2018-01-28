@@ -18,8 +18,6 @@ means I will mock away the portmidi layer to test my abstractions and add some o
 Implementation wise, there's a few things missing:
 
 * Setting Channel- and Message filters
-* Porttime support(not sure I can support that, I guess it needs multithreading, plus: I did not need it until now)
-examples/read_test.rb on how to decipher sysex atm.
 * More different exceptions, plus support for Host Errors
 * A lot of safety nets like testing for open devices before reading and writing and such.
 
@@ -36,4 +34,4 @@ The portmidi wrapper was thrown together by Jan Krutisch <jan@krutisch.de>
 
 * On MacOSX, there's a homebrew recipe, so $ brew install portmidi should do the trick
 * On most Linuxes, portmidi should be simply a package to install by your packagemanager
-* On Windows? Frankly, I'm one of those arrogant anti Windows guys who could care less. If you're not annoyed by that, "here's a pointer":http://sourceforge.net/apps/trac/portmedia/wiki/Installing%20portmidi%20on%20Windows
+* On Windows: "try this":http://sourceforge.net/apps/trac/portmedia/wiki/Installing%20portmidi%20on%20Windows

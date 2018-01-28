@@ -7,7 +7,7 @@ module Portmidi
     attach_function :Pm_CountDevices, [], :int
     attach_function :Pm_Initialize, [], :void
     attach_function :Pm_GetDeviceInfo,[:int], :pointer
-  
+
     attach_function :Pm_OpenInput, [:pointer, :int, :pointer, :int, :pointer, :pointer], :int
     attach_function :Pm_OpenOutput, [:pointer, :int, :pointer, :int, :pointer, :pointer, :int32], :int
     attach_function :Pm_Poll, [:pointer], :int
@@ -18,9 +18,14 @@ module Portmidi
     attach_function :Pm_Close, [:pointer], :int
 
     attach_function :Pm_GetErrorText, [:int], :string
-  
+
+    callback :timer_function, [:int32, :pointer], :void
+    attach_function :Pt_Start, [:int, :timer_function, :pointer], :int    
+    attach_function :Pt_Time, [], :int32
+
+
     #attach_function :Pt_Start, [:int, :pointer, :pointer], :int
-  
+
     class DeviceInfo < FFI::Struct
       layout :struct_version,  :int,
              :midi_api,  :string,
@@ -29,14 +34,14 @@ module Portmidi
              :output, :int,
              :opened, :int
     end
-  
+
     class Event < FFI::Struct
       layout :message, :int32,
              :timestamp, :int32
     end
-  
+
     def self.encode_message(status, data1, data2)
       ((((data2) << 16) & 0xFF0000) | (((data1) << 8) & 0xFF00) | ((status) & 0xFF))
-    end  
+    end
   end
 end
